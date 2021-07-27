@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<launch>
+    <arg name="usb_port" default="/dev/ttyUSB0" />
+    <arg name="baud_rate" default="1000000"/>
+    <arg name="yaml_file" default="$(find dynamixel_arm_controller)/config/pmb2_arm.yaml"/>
+    <arg name="interface" default="position"/>
+
+    <node pkg="open_manipulator_hw" type="omx_control_node" name="omx_control_node" output="screen">
+        <param name="usb_port" value="$(arg usb_port)"/>
+        <param name="baud_rate" value="$(arg baud_rate)"/>
+        <param name="yaml_file" value="$(arg yaml_file)"/>
+        <param name="interface" value="$(arg interface)"/>
+    </node>
+
+    <!-- send robot urdf to param server -->
+    <param name="robot_description" command="xacro --inorder  '$(find pmb2_description)/robots/pmb2.urdf.xacro'"/>
+
+    <!-- <include file="$(find dynamixel_arm_controller)/launch/dynamixel_controllers.launch">
+        <arg name="usb_port" value="$(arg usb_port)"/>
+        <arg name="dxl_baud_rate" value="$(arg baud_rate)"/>
+    </include> -->
+
+    <!-- controller utils -->
+    <include file="$(find dynamixel_arm_controller)/launch/controller_utils.launch"/>
+
+    <!-- joint_trajectory_controller -->
+    <rosparam file="$(find dynamixel_arm_controller)/config/joint_trajectory_controller.yaml" command="load"/>
+
+    <node name="pmb2_arm_column_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="pmb2_arm_column_controller"/>
+    <node name="pmb2_gripper_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="pmb2_gripper_controller"/>
+
+    <!-- startup move_group related -->
+    <!-- <include file="$(find open_manipulator_moveit_config)/launch/move_group.launch"/>
+    <include file="$(find open_manipulator_moveit_config)/launch/moveit_rviz.launch"/> -->
+</launch>
