@@ -1,0 +1,40 @@
+pmb2_arm_column_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - palbator_arm_shoulder_1_joint
+        - palbator_arm_shoulder_2_joint
+        - palbator_arm_shoulder_3_joint
+        - palbator_arm_wrist_1_joint
+        - palbator_arm_wrist_2_joint
+        - palbator_arm_wrist_3_joint
+
+    constraints:
+        goal_time: 0.6
+        stopped_velocity_tolerance: 0.05
+        palbator_arm_shoulder_1_joint: { trajectory: 0.1, goal: 0.1 }
+        palbator_arm_shoulder_2_joint: { trajectory: 0.1, goal: 0.1 }
+        palbator_arm_shoulder_3_joint: { trajectory: 0.1, goal: 0.1 }
+        palbator_arm_wrist_1_joint: { trajectory: 0.1, goal: 0.1 }
+        palbator_arm_wrist_2_joint: { trajectory: 0.1, goal: 0.1 }
+        palbator_arm_wrist_3_joint: { trajectory: 0.1, goal: 0.1 }
+
+    stop_trajectory_duration: 0.5
+    state_publish_rate: 25
+    action_monitor_rate: 10
+
+pmb2_gripper_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - motor1_hand_joint
+        - motor2_hand_joint
+
+    constraints:
+        goal_time: 0.6
+        # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+        stopped_velocity_tolerance: 0.05
+        motor1_hand_joint: { trajectory: 1.0, goal: 1.0 }
+        motor2_hand_joint: { trajectory: 1.0, goal: 1.0 }
+
+    stop_trajectory_duration: 0.5
+    state_publish_rate: 25
+    action_monitor_rate: 10
