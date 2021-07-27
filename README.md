@@ -14,4 +14,4 @@ You can now use rviz to command the arm!
 
 ---
 
-To configure properly the motors in the [config file](./config/pmb2_arm.yaml), you can use the [excel file](./doc/Dynamixel_param.ods)
+To configure properly the motors in the [config file](./dynamixel_arm_controller/config/pmb2_arm.yaml), you can use the [excel file](./dynamixel_arm_controller/doc/Dynamixel_param.ods)
