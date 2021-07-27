@@ -1,0 +1,12 @@
+[submodule "DynamixelSDK"]
+	path = DynamixelSDK
+	url = https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+[submodule "dynamixel-workbench-msgs"]
+	path = dynamixel-workbench-msgs
+	url = https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
+[submodule "dynamixel-workbench"]
+	path = dynamixel-workbench
+	url = https://github.com/ROBOTIS-GIT/dynamixel-workbench.git
+[submodule "ros_controllers"]
+	path = ros_controllers
+	url = https://github.com/ros-controls/ros_controllers.git
