@@ -1,3 +1,6 @@
+# Use Secondary_ID to specify master id and name the slave with "_slave" at the end
+# to ignore it in controller creation.
+
 palbator_arm_shoulder_1_joint:
   ID: 2
   Secondary_ID: 255
